@@ -25,6 +25,7 @@
 const navList = document.getElementById("navbar__list");
 const sections = document.querySelectorAll("section");
 const header = document.querySelector(".page__header");
+const sectionHeaders = document.querySelectorAll('.section__header');
 
 let scrollTimeout;
 /**
@@ -92,6 +93,12 @@ const showNavbar = () => {
   }, 2000);
 };
 
+const toggleSection = (header) => {
+    const content = header.nextElementSibling;
+    content.classList.toggle('expanded');
+    const arrowIcon = header.querySelector('.arrow-icon');
+    arrowIcon.textContent = content.classList.contains('expanded') ? '\u25B3' : '\u25BD';
+}
 /**
  * End Main Functions
  * Begin Events
@@ -108,3 +115,9 @@ document.addEventListener("scroll", setActiveSection);
 document.addEventListener("mousemove", showNavbar);
 document.addEventListener("touchstart", showNavbar);
 document.addEventListener("click", showNavbar);
+// Show/hide section header when clicked
+sectionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+        toggleSection(header);
+    })
+})

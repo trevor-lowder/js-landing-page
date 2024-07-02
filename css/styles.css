@@ -57,7 +57,6 @@ main {
 
 section {
     position: relative;
-    min-height: 80vh;
 }
 
 
@@ -103,18 +102,35 @@ section {
     z-index: 5;
 }
 
+.section__header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
 /* Hide the navigation bar */
 .page__header.hidden {
     transform: translateY(-100%);
     transition: transform 0.3s ease;
 }
 
-
+/* Hide Sections */
+.section__content {
+    display: none;
+  }
+  
+  .section__content.expanded {
+    display: block;
+  }
+  
+  
 /* Footer Styles */
 .page__footer {
     background: #000;
     padding: 3em;
     color: #fff;
+    display: flex;
+    justify-content: center;
 }
 
 .page__footer p{
