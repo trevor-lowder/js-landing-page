@@ -56,7 +56,14 @@ const buildNav = () => {
 
 
 // Scroll to anchor ID using scrollTO event
-
+const scrollToSection = (e) => {
+    if (e.target.nodeName === 'A') {
+        e.preventDefault();
+        const sectionId = e.target.getAttribute('href').substring(1);
+        const section = document.getElementById(sectionId);
+        section.scrollIntoView({behavior: "smooth"});
+    }
+}
 
 /**
  * End Main Functions
@@ -67,7 +74,7 @@ const buildNav = () => {
 // Build menu 
 document.addEventListener("DOMContentLoaded", buildNav);
 // Scroll to section on link click
-
+navList.addEventListener('click', scrollToSection);
 // Set sections as active
 
 
