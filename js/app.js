@@ -30,7 +30,10 @@ const sections = document.querySelectorAll('section');
  * Start Helper Functions
  * 
 */
-
+const isInView = (section) => {
+    const rect = section.getBoundingClientRect();
+    return rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+}
 
 
 /**
@@ -53,7 +56,18 @@ const buildNav = () => {
 }
 
 // Add class 'active' to section when near top of viewport
-
+const setActiveSection = () => {
+    sections.forEach(section => {
+        const navLink = document.querySelector(`a[href="#${section.id}"]`);
+        if(isInView(section)) {
+            section.classList.add('is-active');
+            navLink.classList.add('is-active');
+        } else {
+            section.classList.remove('is-active');
+            navLink.classList.remove('is-active');
+        }
+    })
+}
 
 // Scroll to anchor ID using scrollTO event
 const scrollToSection = (e) => {
@@ -76,5 +90,5 @@ document.addEventListener("DOMContentLoaded", buildNav);
 // Scroll to section on link click
 navList.addEventListener('click', scrollToSection);
 // Set sections as active
-
+document.addEventListener('scroll', setActiveSection);
 
