@@ -103,6 +103,13 @@ section {
     z-index: 5;
 }
 
+/* Hide the navigation bar */
+.page__header.hidden {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+
 /* Footer Styles */
 .page__footer {
     background: #000;
